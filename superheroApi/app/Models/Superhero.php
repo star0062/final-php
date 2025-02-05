@@ -7,8 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Superhero extends Model
 {
-    use HasFactory;
-    protected $table = 'superheroes';
-                         // 1       2       3         4                5              6               7          8     9
-    protected $fillable = ['name', 'sex', 'word', 'description', 'superpower', 'cityProtection', 'gadgets' , 'team', 'car'];
-} 
+    protected $fillable = [
+        'real_name', 'alias', 'gender', 'home_planet', 'description',
+        'powers', 'city', 'gadgets', 'team', 'vehicle', 'user_id'
+    ];
+
+}
