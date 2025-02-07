@@ -13,4 +13,3 @@ Route::get('/superheroes/{id}', [SuperheroController::class, 'show']);
 Route::post('/superheroes', [SuperheroController::class, 'store']);
 Route::put('/superheroes/{id}', [SuperheroController::class, 'update']);
 Route::delete('/superheroes/{id}', [SuperheroController::class, 'destroy']);
-
