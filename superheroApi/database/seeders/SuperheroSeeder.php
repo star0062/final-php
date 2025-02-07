@@ -1,30 +1,26 @@
 <?php
 
-
-
 namespace Database\Seeders;
-
+#use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Models\Superhero; // Vérifier que le bon modèle est utilisé
-use Faker\Factory as Faker;
+use App\Models\Superhero;
 
 class SuperheroSeeder extends Seeder
 {
-    public function run()
+    public function run(): void
     {
-        $faker = Faker::create();
-
-        for ($i = 0; $i < 50; $i++) {
+        $faker = \Faker\Factory::create();
+        for ($i = 0; $i < 10; $i++) {
             Superhero::create([
                 'name' => $faker->name,
-                'sex' => $faker->randomElement(['male', 'female', 'other']),
-                'world' => $faker->boolean ? $faker->word : null,
+                'gender' => $faker->randomElement(['male', 'female']),
+                'planet' => $faker->word,
                 'description' => $faker->sentence,
-                'superpower' => $faker->boolean ? $faker->word : null,
-                'cityProtection' => $faker->city,
-                'gadgets' => $faker->boolean ? $faker->word : null,
-                'team' => $faker->boolean ? $faker->word : null,
-                'car' => $faker->boolean ? $faker->word : null,
+                'superpower' => $faker->word,
+                'city_protection' => $faker->city,
+                'gadgets' => $faker->word,
+                'team' => $faker->word,
+                'vehicle' => $faker->word,
             ]);
         }
     }
