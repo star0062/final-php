@@ -12,7 +12,7 @@ class CreateSuperheroTable extends Migration
             $table->id();
             $table->string('name'); // 1
             $table->string('sex');  // 2
-            $table->string('word'); // 3
+            $table->string('world'); // 3
             $table->string('description'); // 4
             $table->string('superpower'); // 5
             $table->string('cityProtection'); // 6

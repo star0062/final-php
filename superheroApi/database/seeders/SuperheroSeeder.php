@@ -28,24 +28,26 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use App\Models\Books;
+use App\Models\Superhero; // Vérifier que le bon modèle est utilisé
+use Faker\Factory as Faker;
 
 class SuperheroSeeder extends Seeder
 {
     public function run()
     {
-        $faker = \Faker\Factory::create();
+        $faker = Faker::create();
+
         for ($i = 0; $i < 50; $i++) {
-            Books::create([
-                'name' => $faker->sentence,
-                'sex' => $faker->name,
-                'word' => $faker->date,
-                'description' => $faker->date,
-                'superpower' => $faker->date,
-                'cityProtection' => $faker->date,
-                'gadgets' => $faker->date,
-                'team' => $faker->date,
-                'car' => $faker->date,
+            Superhero::create([
+                'name' => $faker->name,
+                'sex' => $faker->randomElement(['male', 'female', 'other']),
+                'world' => $faker->boolean ? $faker->word : null,
+                'description' => $faker->sentence,
+                'superpower' => $faker->boolean ? $faker->word : null,
+                'cityProtection' => $faker->city,
+                'gadgets' => $faker->boolean ? $faker->word : null,
+                'team' => $faker->boolean ? $faker->word : null,
+                'car' => $faker->boolean ? $faker->word : null,
             ]);
         }
     }
