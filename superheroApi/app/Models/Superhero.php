@@ -9,5 +9,6 @@ class Superhero extends Model
 {
     use HasFactory;
     protected $table = 'superheroes';
-    protected $fillable = ['name', 'sex', 'word', 'description', 'superpower', 'city protection', 'gadgets' , 'team', 'car'];
+                         // 1       2       3         4                5              6               7          8     9
+    protected $fillable = ['name', 'sex', 'word', 'description', 'superpower', 'cityProtection', 'gadgets' , 'team', 'car'];
 }
