@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Connexion</title>
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/login.css') }}">
 </head>
 <body>
     <div class="container">
@@ -19,7 +19,7 @@
 
             <label>Mot de passe :</label>
             <input type="password" name="password" required>
-            
+
             <button type="submit">Se connecter</button>
         </form>
         <p>Pas encore de compte ? <a href="{{ url('/register') }}">S'inscrire</a></p>

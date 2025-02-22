@@ -27,6 +27,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
     Route::get('/table-sh', [TableSuperheroController::class, 'tableSH']); //tableau Superhero
+    Route::post('/table-sh', [SuperheroController::class, 'store']);
 });
 
 

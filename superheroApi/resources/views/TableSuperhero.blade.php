@@ -46,5 +46,41 @@
         </tbody>
     </table>
 
+
+    <form action="{{ url('/table-sh')}}" method="POST">
+        @csrf
+        <label>Nom :</label>
+        <input type="text" name="name" required>
+
+        <label>Genre :</label>
+        <select id="choix" name="gender" required>
+            <option value="male">Homme</option>
+            <option value="female">Femme</option>
+        </select>
+
+        <label>Planet :</label>
+        <input type="text" name="planet" required>
+
+        <label>Description :</label>
+        <input type="text" name="description" required>
+
+        <label>Superpouvoir :</label>
+        <input type="text" name="superpower" required>
+
+        <label>Ville protéger :</label>
+        <input type="text" name="city_protection" required>
+
+        <label>Gadgets :</label>
+        <input type="text" name="gadgets" required>
+
+        <label>Equipe :</label>
+        <input type="text" name="team" required>
+
+        <label>Vehicule :</label>
+        <input type="text" name="vehicle" required>
+
+        <button type="submit">Ajout du Superhero</button>
+    </form>
+
 </body>
 </html>

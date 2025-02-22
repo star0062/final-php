@@ -4,83 +4,121 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Superhero;
+use Illuminate\Support\Facades\Validator;
 
 class SuperheroController extends Controller
 {
+    // Liste tous les superhéros
     public function index()
     {
-        $superhero = Superhero::all();
-        return response()->json($superhero);
+        $superheroes = Superhero::all();
+        return response()->json($superheroes);
     }
 
+    // Création d'un superhéros
     public function store(Request $request)
     {
-        $superhero = new Superhero();
-        $superhero->name = $request->name;
-        $superhero->gender = $request->gender;
-        $superhero->planet = $request->planet;
-        $superhero->description = $request->description;
-        $superhero->superpower = $request->superpower;
-        $superhero->city_protection = $request->city_protection;
-        $superhero->gadgets = $request->gadgets;
-        $superhero->team = $request->team;
-        $superhero->vehicle = $request->vehicle;
-        $superhero->save();
+        // Validation des données
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string|max:50',
+            'gender' => 'required|in:male,female',
+            'planet' => 'required|string|max:50',
+            'description' => 'required|string',
+            'superpower' => 'required|string',
+            'city_protection' => 'required|string',
+            'gadgets' => 'nullable|string',
+            'team' => 'nullable|string',
+            'vehicle' => 'nullable|string',
+        ]);
+
+        // Si la validation échoue
+        if ($validator->fails()) {
+            return response()->json([
+                'errors' => $validator->errors()
+            ], 400);
+        }
+
+        // Création du superhéros
+        $superhero = Superhero::create($request->all());
 
         return response()->json([
-            "message" => "Superhero record created"
+            "message" => "Superhero record created",
+            "superhero" => $superhero
         ], 201);
     }
 
+    // Afficher un superhéros spécifique
     public function show($id)
     {
         $superhero = Superhero::find($id);
-        if ($superhero) {
-            return response()->json($superhero);
-        } else {
+
+        if (!$superhero) {
             return response()->json([
                 "message" => "Superhero not found"
             ], 404);
         }
+
+        return response()->json($superhero);
     }
 
+    // Mettre à jour un superhéros
     public function update(Request $request, $id)
     {
-        if (Superhero::where('id', $id)->exists()) {
-            $superhero = Superhero::find($id);
-            $superhero->name = is_null($request->name) ? $superhero->name : $request->name;
-            $superhero->gender = is_null($request->gender) ? $superhero->gender : $request->gender;
-            $superhero->planet = is_null($request->planet) ? $superhero->planet : $request->planet;
-            $superhero->description = is_null($request->description) ? $superhero->description : $request->description;
-            $superhero->superpower = is_null($request->superpower) ? $superhero->superpower : $request->superpower;
-            $superhero->city_protection = is_null($request->city_protection) ? $superhero->city_protection : $request->city_protection;
-            $superhero->gadgets = is_null($request->gadgets) ? $superhero->gadgets : $request->gadgets;
-            $superhero->team = is_null($request->team) ? $superhero->team : $request->team;
-            $superhero->vehicle = is_null($request->vehicle) ? $superhero->vehicle : $request->vehicle;
-            $superhero->save();
+        $superhero = Superhero::find($id);
 
-            return response()->json([
-                "message" => "Records updated successfully"
-            ], 200);
-        } else {
+        if (!$superhero) {
             return response()->json([
                 "message" => "Superhero not found"
             ], 404);
         }
+
+        // Validation des données
+        $validator = Validator::make($request->all(), [
+            'name' => 'string|max:50',
+            'gender' => 'in:male,female',
+            'planet' => 'string|max:50',
+            'description' => 'string',
+            'superpower' => 'string',
+            'city_protection' => 'string',
+            'gadgets' => 'nullable|string',
+            'team' => 'nullable|string',
+            'vehicle' => 'nullable|string',
+        ]);
+
+        // Si la validation échoue
+        if ($validator->fails()) {
+            return response()->json([
+                'errors' => $validator->errors()
+            ], 400);
+        }
+
+        // Mise à jour des champs remplis
+        $superhero->update($request->only([
+            'name', 'gender', 'planet', 'description', 'superpower',
+            'city_protection', 'gadgets', 'team', 'vehicle'
+        ]));
+
+        return response()->json([
+            "message" => "Records updated successfully",
+            "superhero" => $superhero
+        ], 200);
     }
 
+    // Supprimer un superhéros
     public function destroy($id)
     {
-        if (Superhero::where('id', $id)->exists()) {
-            $superhero = Superhero::find($id);
-            $superhero->delete();
-            return response()->json([
-                "message" => "Records deleted"
-            ], 202);
-        } else {
+        $superhero = Superhero::find($id);
+
+        if (!$superhero) {
             return response()->json([
                 "message" => "Superhero not found"
             ], 404);
         }
+
+        $superhero->delete();
+
+        return response()->json([
+            "message" => "Superhero deleted successfully"
+        ], 202);
     }
 }
