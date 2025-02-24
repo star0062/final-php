@@ -8,15 +8,13 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-// Route::get('/superhero', [SuperheroController::class, 'index']);
-// Route::get('/superhero/{id}', [SuperheroController::class, 'show']);
-// Route::post('/superhero', [SuperheroController::class, 'store']);
-// Route::put('/superhero/{id}', [SuperheroController::class, 'update']);
-// Route::delete('/superhero/{id}', [SuperheroController::class, 'destroy']);
 
 Route::prefix('api')->group(function () {
     Route::get('/superheroes', [SuperheroController::class, 'index']);
     Route::post('/superheroes', [SuperheroController::class, 'store']);
+    Route::get('/table-sh', [TableSuperheroController::class, 'tableSH']);
+    Route::get('/superheroes/{id}/edit', [SuperheroController::class, 'edit']);
+    Route::get('/superheroes/create', [SuperheroController::class, 'create']);
     Route::get('/superheroes/{id}', [SuperheroController::class, 'show']);
     Route::put('/superheroes/{id}', [SuperheroController::class, 'update']);
     Route::delete('/superheroes/{id}', [SuperheroController::class, 'destroy']);

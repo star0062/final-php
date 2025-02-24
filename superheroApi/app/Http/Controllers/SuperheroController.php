@@ -38,13 +38,16 @@ class SuperheroController extends Controller
             ], 400);
         }
 
-        // Création du superhéros
-        $superhero = Superhero::create($request->all());
+        // // Création du superhéros
+        // $superhero = Superhero::create($request->all());
 
-        return response()->json([
-            "message" => "Superhero record created",
-            "superhero" => $superhero
-        ], 201);
+        // return response()->json([
+        //     "message" => "Superhero record created",
+        //     "superhero" => $superhero
+        // ], 201);
+        Superhero::create($request->all());
+
+        return redirect('/table-sh')->with('success', 'Superhero added successfully');
     }
 
     // Afficher un superhéros spécifique
@@ -58,7 +61,8 @@ class SuperheroController extends Controller
             ], 404);
         }
 
-        return response()->json($superhero);
+        //return response()->json($superhero);
+        return view('superheroes.show', compact('superhero'));
     }
 
     // Mettre à jour un superhéros
@@ -98,27 +102,39 @@ class SuperheroController extends Controller
             'city_protection', 'gadgets', 'team', 'vehicle'
         ]));
 
-        return response()->json([
-            "message" => "Records updated successfully",
-            "superhero" => $superhero
-        ], 200);
+        return redirect('/table-sh')->with('success', 'Superhero updated successfully');
     }
 
-    // Supprimer un superhéros
-    public function destroy($id)
+    
+        public function destroy($id)
     {
         $superhero = Superhero::find($id);
-
+    
         if (!$superhero) {
-            return response()->json([
-                "message" => "Superhero not found"
-            ], 404);
+            return redirect('/table-sh')->with('error', 'Superhero not found');
+        }
+    
+        $superhero->delete();
+    
+        return redirect('/table-sh')->with('success', 'Superhero deleted successfully');
+    }
+
+        public function edit($id)
+        {
+            $superhero = Superhero::find($id);
+        
+            if (!$superhero) {
+                return response()->json([
+                    "message" => "Superhero not found"
+                ], 404);
+            }
+        
+            return view('superheroes.edit', compact('superhero'));
         }
 
-        $superhero->delete();
+        public function create()
+        {
+            return view('superheroes.create');
+        }
 
-        return response()->json([
-            "message" => "Superhero deleted successfully"
-        ], 202);
-    }
 }

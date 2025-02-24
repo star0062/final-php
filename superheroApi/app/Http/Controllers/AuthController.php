@@ -1,5 +1,6 @@
 <?php
 
+
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -24,7 +25,7 @@ class AuthController extends Controller
         ]);
 
         if (Auth::attempt($credentials)) {
-            return redirect('/dashboard');
+            return redirect('/table-sh'); 
         }
 
         return back()->withErrors(['email' => 'Email ou mot de passe incorrect.']);
