@@ -102,31 +102,10 @@ class SuperheroController extends Controller
             'city_protection', 'gadgets', 'team', 'vehicle'
         ]));
 
-        // return response()->json([
-        //     "message" => "Records updated successfully",
-        //     "superhero" => $superhero
-        // ], 200);
         return redirect('/table-sh')->with('success', 'Superhero updated successfully');
     }
 
-    // Supprimer un superhéros
-    // public function destroy($id)
-    // {
-    //     $superhero = Superhero::find($id);
-
-    //     if (!$superhero) {
-    //         return response()->json([
-    //             "message" => "Superhero not found"
-    //         ], 404);
-    //     }
-
-    //     $superhero->delete();
-
-    //     return response()->json([
-    //         "message" => "Superhero deleted successfully"
-    //     ], 202);
-    // }
-
+    
         public function destroy($id)
     {
         $superhero = Superhero::find($id);
