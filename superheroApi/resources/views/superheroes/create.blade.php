@@ -4,15 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ajout du Superhero</title>
-    <link rel="stylesheet" href="{{ asset('css/tableSuperhero.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/createSuperhero.css') }}">
 </head>
 <body>
     <header>
         <a href="{{ url('/table-sh') }}" class="btn btn-secondary">Retour à la liste des Superhéros</a>
-        <form action="{{ url('/logout') }}" method="POST" style="display:inline;">
-            @csrf
-            <button type="submit" class="btn btn-danger">Déconnexion</button>
-        </form>
     </header>
 
     <h1>Ajout du Superhero</h1>

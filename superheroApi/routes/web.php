@@ -21,7 +21,7 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    Route::get('/table-sh', [TableSuperheroController::class, 'tableSH']); //tableau Superhero
+    Route::get('/table-sh', [TableSuperheroController::class, 'tableSH']); 
     Route::post('/table-sh', [SuperheroController::class, 'store']);
 });
 

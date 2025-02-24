@@ -1,94 +1,125 @@
-/* Styles Super-Héros pour Liste des Superhéros */
 body {
-    background: linear-gradient(45deg, #ff0000, #0000ff);
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    /* background-color: #333; */
     color: #fff;
-    font-family: 'Comic Sans MS', cursive, sans-serif;
+    padding: 10px 0;
     text-align: center;
-    padding: 20px;
+    position: relative;
+}
+
+.logout-container {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+header a.btn {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+header form {
+    display: inline;
+}
+
+header button.btn {
+    background-color: #dc3545;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
 h1 {
-    text-transform: uppercase;
-    font-size: 2.5rem;
-    text-shadow: 3px 3px 0 yellow, -3px -3px 0 red;
-    margin-bottom: 20px;
-}
-
-table {
-    width: 100%;
-    max-width: 90%;
-    margin: auto;
-    border-collapse: collapse;
-    box-shadow: 0px 0px 10px 5px yellow;
-}
-
-table, th, td {
-    border: 2px solid yellow;
-}
-
-th, td {
-    padding: 10px;
     text-align: center;
-    background: rgba(0, 0, 0, 0.8);
-    color: white;
+    margin-top: 20px;
 }
 
-th {
-    background: red;
-    font-size: 1.2rem;
-    text-transform: uppercase;
+.alert {
+    width: 80%;
+    margin: 20px auto;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
 }
 
-tbody tr:hover {
-    background: rgba(255, 255, 0, 0.5);
-    transform: scale(1.02);
-    transition: 0.3s;
+.alert-success {
+    background-color: #d4edda;
+    color: #155724;
 }
 
 form {
-    max-width: 600px;
+    width: 80%;
     margin: 20px auto;
-    background: rgba(0, 0, 0, 0.8);
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0px 0px 10px 5px yellow;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    text-align: center;
 }
 
-label {
-    display: block;
-    margin-top: 10px;
-    font-weight: bold;
-    font-size: 1.2rem;
-}
-
-input, select {
-    width: 100%;
+form input[type="text"] {
+    width: 70%;
     padding: 10px;
-    margin: 5px 0;
+    border: 1px solid #ccc;
     border-radius: 5px;
-    border: none;
-    font-size: 1rem;
 }
 
-button {
-    width: 100%;
-    padding: 10px;
-    margin-top: 15px;
-    background: yellow;
-    color: black;
-    font-weight: bold;
+form button {
+    padding: 10px 20px;
     border: none;
     border-radius: 5px;
-    font-size: 1.2rem;
+    background-color: #007bff;
+    color: #fff;
     cursor: pointer;
-    transition: 0.3s;
 }
 
-button:hover {
-    background: red;
-    color: white;
-    transform: scale(1.1);
+.actions {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.actions a.btn {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.superhero-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    width: 80%;
+    margin: 20px auto;
+}
+
+.superhero-card {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 20px;
+    text-align: center;
+    width: 200px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.superhero-card a {
+    color: #007bff;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.superhero-card a:hover {
+    text-decoration: underline;
 }

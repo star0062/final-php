@@ -4,9 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Modifier Superhéros</title>
-    <link rel="stylesheet" href="{{ asset('css/tableSuperhero.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/editSuperhero.css') }}">
 </head>
 <body>
+    
+
     <h1>Modifier Superhéros</h1>
 
     <form action="{{ url('/api/superheroes/' . $superhero->id) }}" method="POST">
@@ -44,6 +46,5 @@
 
         <button type="submit">Modifier Superhéros</button>
     </form>
-
 </body>
 </html>

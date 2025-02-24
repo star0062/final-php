@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\Validator;
 
 class SuperheroController extends Controller
 {
-    // Liste tous les superhéros
     public function index()
     {
         $superheroes = Superhero::all();
@@ -18,7 +17,6 @@ class SuperheroController extends Controller
     // Création d'un superhéros
     public function store(Request $request)
     {
-        // Validation des données
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:50',
             'gender' => 'required|in:male,female',
@@ -31,26 +29,17 @@ class SuperheroController extends Controller
             'vehicle' => 'nullable|string',
         ]);
 
-        // Si la validation échoue
         if ($validator->fails()) {
             return response()->json([
                 'errors' => $validator->errors()
             ], 400);
         }
 
-        // // Création du superhéros
-        // $superhero = Superhero::create($request->all());
-
-        // return response()->json([
-        //     "message" => "Superhero record created",
-        //     "superhero" => $superhero
-        // ], 201);
         Superhero::create($request->all());
 
         return redirect('/table-sh')->with('success', 'Superhero added successfully');
     }
 
-    // Afficher un superhéros spécifique
     public function show($id)
     {
         $superhero = Superhero::find($id);
@@ -61,7 +50,6 @@ class SuperheroController extends Controller
             ], 404);
         }
 
-        //return response()->json($superhero);
         return view('superheroes.show', compact('superhero'));
     }
 
@@ -76,7 +64,6 @@ class SuperheroController extends Controller
             ], 404);
         }
 
-        // Validation des données
         $validator = Validator::make($request->all(), [
             'name' => 'string|max:50',
             'gender' => 'in:male,female',
@@ -89,7 +76,6 @@ class SuperheroController extends Controller
             'vehicle' => 'nullable|string',
         ]);
 
-        // Si la validation échoue
         if ($validator->fails()) {
             return response()->json([
                 'errors' => $validator->errors()

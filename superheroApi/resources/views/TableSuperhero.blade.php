@@ -5,14 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Liste des Superhéros</title>
     <link rel="stylesheet" href="{{ asset('css/tableSuperhero.css') }}">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
     <header>
-        <a href="{{ url('/api/superheroes/create') }}" class="btn btn-primary">Ajout du Superhero</a>
-        <form action="{{ url('/logout') }}" method="POST" style="display:inline;">
-            @csrf
-            <button type="submit" class="btn btn-danger">Déconnexion</button>
-        </form>
+        <div class="logout-container">
+            <form action="{{ url('/logout') }}" method="POST" style="display:inline;">
+                @csrf
+                <button type="submit" class="btn btn-danger">Déconnexion</button>
+            </form>
+        </div>
     </header>
 
     <h1>Liste des Superhéros</h1>
@@ -23,26 +25,22 @@
         </div>
     @endif
 
-    <form action="{{ url('/table-sh') }}" method="GET">
+    <form action="{{ url('/table-sh') }}" method="GET" style="text-align: center;">
         <input type="text" name="query" placeholder="Rechercher..." value="{{ request('query') }}">
         <button type="submit">Rechercher</button>
     </form>
 
-    <table border="1">
-        <thead>
-            <tr>
-                <th>Nom</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach ($superheroes as $hero)
-                <tr>
-                    <td><a href="{{ url('/api/superheroes/' . $hero->id) }}">{{ $hero->name }}</a></td>
-                </tr>
-            @endforeach
-        </tbody>
-    </table>
+    <div class="actions">
+        <a href="{{ url('/api/superheroes/create') }}" class="btn btn-primary">Ajout du Superhero</a>
+    </div>
 
+    <div class="superhero-grid" id="superhero-list">
+        @foreach ($superheroes as $hero)
+            <div class="superhero-card">
+                <a href="{{ url('/api/superheroes/' . $hero->id) }}">{{ $hero->name }}</a>
+            </div>
+        @endforeach
+    </div>
 
     <script>
         $(document).ready(function() {
@@ -55,7 +53,7 @@
                     success: function(data) {
                         $('#superhero-list').html('');
                         $.each(data, function(key, hero) {
-                            $('#superhero-list').append('<tr><td><a href="/api/superheroes/' + hero.id + '">' + hero.name + '</a></td></tr>');
+                            $('#superhero-list').append('<div class="superhero-card"><a href="/api/superheroes/' + hero.id + '">' + hero.name + '</a></div>');
                         });
                     }
                 });
