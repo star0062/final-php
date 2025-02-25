@@ -4,20 +4,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ajout du Superhero</title>
-    <link rel="stylesheet" href="{{ asset('css/tableSuperhero.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/header.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/creat_hero.css') }}">
+
 </head>
 <body>
+
+
+
     <header>
-        <a href="{{ url('/table-sh') }}" class="btn btn-secondary">Retour à la liste des Superhéros</a>
-        <form action="{{ url('/logout') }}" method="POST" style="display:inline;">
+        <h1>Liste des Superhéros</h1>
+        <a class="dashbord" href="{{ url('/dashboard') }}">Aller au menu</a><br>
+        <a class="back_list" href="{{ url('/table-sh') }}" >Retour à la liste des Superhéros</a>
+        <form action="{{ url('/logout') }}" method="POST">
             @csrf
-            <button type="submit" class="btn btn-danger">Déconnexion</button>
+            <button class="disconnect" type="submit">Déconnexion</button>
         </form>
+
     </header>
 
-    <h1>Ajout du Superhero</h1>
 
-    <form action="{{ url('/api/superheroes')}}" method="POST">
+
+
+
+
+
+    <form class="form_creat_hero" action="{{ url('/api/superheroes')}}" method="POST">
         @csrf
         <label>Nom :</label>
         <input type="text" name="name" required>
@@ -49,7 +61,7 @@
         <label>Vehicule :</label>
         <input type="text" name="vehicle" required>
 
-        <button type="submit">Ajout du Superhero</button>
+        <button class="btn_creat" type="submit">Ajout du Superhero</button>
     </form>
 </body>
 </html>

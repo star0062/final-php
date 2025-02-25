@@ -4,12 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Modifier Superhéros</title>
-    <link rel="stylesheet" href="{{ asset('css/tableSuperhero.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/header.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/edit_hero.css') }}">
 </head>
 <body>
-    <h1>Modifier Superhéros</h1>
 
-    <form action="{{ url('/api/superheroes/' . $superhero->id) }}" method="POST">
+    <header>
+        <h1>Modifier Superhéros</h1>
+        <a class="back_list" href="{{ url('/table-sh') }}" >Retour à la liste des Superhéros</a><br>
+    </header>
+
+    <form class="form_edit" action="{{ url('/api/superheroes/' . $superhero->id) }}" method="POST">
         @csrf
         @method('PUT')
         <label>Nom :</label>
@@ -42,7 +47,7 @@
         <label>Vehicule :</label>
         <input type="text" name="vehicle" value="{{ $superhero->vehicle }}" required>
 
-        <button type="submit">Modifier Superhéros</button>
+        <button class="btn_edit" type="submit">Modifier Superhéros</button>
     </form>
 
 </body>

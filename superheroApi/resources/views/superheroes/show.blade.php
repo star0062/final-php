@@ -4,16 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Détails du Superhéros</title>
-    <link rel="stylesheet" href="{{ asset('css/tableSuperhero.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/header.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/show_hero.css') }}">
 </head>
 <body>
-    <h1>Détails du Superhéros</h1>
+    <header>
+        <h1>Détails du Superhéros</h1>
+        <a class="back_list" href="{{ url('/table-sh') }}" >Retour à la liste des Superhéros</a><br>
+        <a class="edit" href="{{ url('/api/superheroes/' . $superhero->id . '/edit') }}">Modifier le Superhero</a>
+        <form action="{{ url('/api/superheroes/' . $superhero->id) }}" method="POST">
+            @csrf
+            @method('DELETE')
+            <button class="delete" type="submit">Delete</button>
+        </form>
+    </header>
+    <br>
+
 
     <table border="1">
-        <tr>
+        {{-- <tr>
             <th>ID</th>
             <td>{{ $superhero->id }}</td>
-        </tr>
+        </tr> --}}
         <tr>
             <th>Nom</th>
             <td>{{ $superhero->name }}</td>
@@ -60,12 +72,6 @@
         </tr>
     </table>
 
-    <a href="{{ url('/table-sh') }}" class="btn btn-primary">Retour à la liste</a>
-    <a href="{{ url('/api/superheroes/' . $superhero->id . '/edit') }}" class="btn btn-primary">Edit</a>
-    <form action="{{ url('/api/superheroes/' . $superhero->id) }}" method="POST" style="display:inline;">
-        @csrf
-        @method('DELETE')
-        <button type="submit" class="btn btn-danger">Delete</button>
-    </form>
+
 </body>
 </html>

@@ -4,18 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Liste des Superhéros</title>
+    <link rel="stylesheet" href="{{ asset('css/header.css') }}">
     <link rel="stylesheet" href="{{ asset('css/tableSuperhero.css') }}">
 </head>
 <body>
     <header>
-        <a href="{{ url('/api/superheroes/create') }}" class="btn btn-primary">Ajout du Superhero</a>
-        <form action="{{ url('/logout') }}" method="POST" style="display:inline;">
+        <h1>Liste des Superhéros</h1>
+        <a class="dashbord" href="{{ url('/dashboard') }}">Aller au menu</a><br>
+        <a class="creat" href="{{ url('/api/superheroes/create') }}" class="">Ajout du Superhero</a>
+        <form action="{{ url('/logout') }}" method="POST">
             @csrf
-            <button type="submit" class="btn btn-danger">Déconnexion</button>
+            <button type="submit" class="disconnect">Déconnexion</button>
         </form>
+
     </header>
 
-    <h1>Liste des Superhéros</h1>
+
 
     @if (session('success'))
         <div class="alert alert-success">
@@ -23,9 +27,9 @@
         </div>
     @endif
 
-    <form action="{{ url('/table-sh') }}" method="GET">
+    <form class="form_search" action="{{ url('/table-sh') }}" method="GET">
         <input type="text" name="query" placeholder="Rechercher..." value="{{ request('query') }}">
-        <button type="submit">Rechercher</button>
+        <button class="btn_search" type="submit">Rechercher</button>
     </form>
 
     <table border="1">

@@ -1,0 +1,32 @@
+h1 {
+    text-transform: uppercase;
+    font-size: 2.5rem;
+    text-shadow: 3px 3px 0 yellow, -3px -3px 0 red;
+    margin-bottom: 20px;
+}
+
+.creat,
+.disconnect,
+.back_list,
+.edit,
+.delete,
+.dashbord{
+    transition: 0.3s;
+    color: yellow;
+    background-color: #0000ff00;
+    border: none;
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: none;
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+}
+
+.creat:hover,
+.disconnect:hover,
+.back_list:hover,
+.edit:hover,
+.delete:hover,
+.dashbord:hover {
+    color: red;
+}
