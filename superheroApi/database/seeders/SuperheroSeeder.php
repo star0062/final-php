@@ -10,7 +10,7 @@ class SuperheroSeeder extends Seeder
     public function run(): void
     {
         $faker = \Faker\Factory::create();
-        for ($i = 0; $i < 10; $i++) {
+        for ($i = 0; $i < 50; $i++) {
             Superhero::create([
                 'name' => $faker->name,
                 'gender' => $faker->randomElement(['male', 'female']),
