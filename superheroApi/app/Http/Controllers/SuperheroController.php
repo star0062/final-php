@@ -14,7 +14,7 @@ class SuperheroController extends Controller
         return response()->json($superheroes);
     }
 
-    // Création d'un superhéros
+    
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -53,7 +53,6 @@ class SuperheroController extends Controller
         return view('superheroes.show', compact('superhero'));
     }
 
-    // Mettre à jour un superhéros
     public function update(Request $request, $id)
     {
         $superhero = Superhero::find($id);
@@ -82,7 +81,6 @@ class SuperheroController extends Controller
             ], 400);
         }
 
-        // Mise à jour des champs remplis
         $superhero->update($request->only([
             'name', 'gender', 'planet', 'description', 'superpower',
             'city_protection', 'gadgets', 'team', 'vehicle'
