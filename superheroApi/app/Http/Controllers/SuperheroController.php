@@ -38,13 +38,6 @@ class SuperheroController extends Controller
             ], 400);
         }
 
-        // // Création du superhéros
-        // $superhero = Superhero::create($request->all());
-
-        // return response()->json([
-        //     "message" => "Superhero record created",
-        //     "superhero" => $superhero
-        // ], 201);
         Superhero::create($request->all());
 
         return redirect('/table-sh')->with('success', 'Superhero added successfully');
@@ -61,7 +54,6 @@ class SuperheroController extends Controller
             ], 404);
         }
 
-        //return response()->json($superhero);
         return view('superheroes.show', compact('superhero'));
     }
 
@@ -105,30 +97,30 @@ class SuperheroController extends Controller
         return redirect('/table-sh')->with('success', 'Superhero updated successfully');
     }
 
-    
+
         public function destroy($id)
     {
         $superhero = Superhero::find($id);
-    
+
         if (!$superhero) {
             return redirect('/table-sh')->with('error', 'Superhero not found');
         }
-    
+
         $superhero->delete();
-    
+
         return redirect('/table-sh')->with('success', 'Superhero deleted successfully');
     }
 
         public function edit($id)
         {
             $superhero = Superhero::find($id);
-        
+
             if (!$superhero) {
                 return response()->json([
                     "message" => "Superhero not found"
                 ], 404);
             }
-        
+
             return view('superheroes.edit', compact('superhero'));
         }
 
